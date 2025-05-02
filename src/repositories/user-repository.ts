@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 
 type UserData = Omit<User,"id">;
 
-type SignInData = Omit<User, "id" & "name">;
+type SignInData = Omit<User, "id" | "name">;
 
 export async function getUserData(email:string){
    
