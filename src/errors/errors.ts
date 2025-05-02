@@ -25,3 +25,10 @@ export function badRequest(){
         message: "esta operação não pode ser realizada!"
     }
 }
+
+export function unauthorized(){
+    return{
+        type: "Unauthorized",
+        message: "email e/ou senha inválido(s)!"
+    }
+}

@@ -2,9 +2,9 @@ import prisma from 'database/config';
 import { User } from '../../generated/prisma';
 import bcrypt from 'bcrypt';
 
-type UserData = Omit<User,"id">;
+export type UserData = Omit<User,"id">;
 
-type SignInData = Omit<User, "id" | "name">;
+export type SignInData = Omit<User, "id" | "name">;
 
 export async function getUserData(email:string){
    
@@ -34,13 +34,13 @@ export async function signUp(userData:UserData){
 export async function signIn(signInData:SignInData){
     const { email, password } = signInData;
 
-    const registeredUser = await prisma.user.findFirst({
+    const registeredUser: User = await prisma.user.findFirst({
         where:{
             email: email
         }
     })
 
-    const logIn = bcrypt.compareSync(registeredUser.password, password);
+    const logIn: boolean = bcrypt.compareSync(registeredUser.password, password);
 
-    return logIn;
+    return { registeredUser,logIn };
 }
