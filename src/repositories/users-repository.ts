@@ -42,5 +42,5 @@ export async function signIn(signInData:SignInData){
 
     const logIn: boolean = bcrypt.compareSync(registeredUser.password, password);
 
-    return { registeredUser,logIn };
+    return { registeredUser, logIn };
 }

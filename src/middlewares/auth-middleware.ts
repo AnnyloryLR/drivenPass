@@ -5,6 +5,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+type UserPayload = {
+    userId: number
+}
+
 export async function tokenValidate(req: Request, res: Response, next: NextFunction){
     const { authorization } = req.headers;
     const token = authorization?.replace("Bearer", "").trim();
@@ -12,9 +16,8 @@ export async function tokenValidate(req: Request, res: Response, next: NextFunct
     if(!token) return res.sendStatus(401);
 
     try {
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-            if(err) return res.status(401).send(err);
-
+      const decoded =   jwt.verify(token, process.env.JWT_SECRET) as UserPayload
+            
             const user = await prisma.user.findFirst({
                 where: {
                        id: decoded.userId
@@ -25,8 +28,7 @@ export async function tokenValidate(req: Request, res: Response, next: NextFunct
 
             res.locals.user = user;
 
-            return next();
-        });   
+            return next();  
 
     } catch (error) {
         return res.status(500).send(error.message);
