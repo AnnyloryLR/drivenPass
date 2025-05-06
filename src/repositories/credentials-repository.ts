@@ -10,7 +10,7 @@ const cryptr = new Cryptr(secretKey);
 
 export type CredentialData = Omit<Credential,"id" | "userId">;
 
-export async function getCredentialTitle(title: string){
+export async function getCredentialByTitle(title: string){
     const exist = await prisma.credential.findFirst({
         where:{
             title:title
@@ -35,7 +35,7 @@ export async function newCrendential(user_id: number ,credentialData: Credential
         }
     });
 
-    return {credential};
+    return credential;
 }
 
 export async function getAllCredentials(){
@@ -57,7 +57,6 @@ export async function getAllCredentials(){
 }
 
 export async function getCredentialById(id:number){
-
     const credential = await prisma.credential.findFirst({
         where: {
             id:id
@@ -66,6 +65,7 @@ export async function getCredentialById(id:number){
 
     const decryptedCredential = {
         
+        id,
         title: credential.title,
         url: credential.url,
         username: credential.username,
@@ -79,11 +79,7 @@ export async function getCredentialById(id:number){
 export async function credentialUpdte(id:number, credentialData:CredentialData){
     const { title, url, username, password } = credentialData;
 
-    const credential: Credential = await prisma.credential.findFirst({
-        where: {
-            id:id
-        }
-    })
+    const credential = await getCredentialById(id);
 
     const updateCredential: Credential = await prisma.credential.update({
         where:{
@@ -95,9 +91,11 @@ export async function credentialUpdte(id:number, credentialData:CredentialData){
             url,
             username,
             password,
-            userId: credential.userId
+            userId: credential.id
         }
     })
+
+    return updateCredential;
 }
 
 export async function deleteCredential(id:number){

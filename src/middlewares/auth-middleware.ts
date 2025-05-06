@@ -9,11 +9,12 @@ type UserPayload = {
     userId: number
 }
 
-export async function tokenValidate(req: Request, res: Response, next: NextFunction){
+export async function tokenValidate(req: Request, res: Response, next: NextFunction): Promise<void> {
     const { authorization } = req.headers;
     const token = authorization?.replace("Bearer", "").trim();
 
-    if(!token) return res.sendStatus(401);
+    if(!token) {res.sendStatus(401) 
+        return };
 
     try {
       const decoded =   jwt.verify(token, process.env.JWT_SECRET) as UserPayload
@@ -24,14 +25,17 @@ export async function tokenValidate(req: Request, res: Response, next: NextFunct
                    }
             });
 
-            if(!user) return res.sendStatus(401);
+            if(!user) {res.sendStatus(401)
+                return};
+                
 
             res.locals.user = user;
 
             return next();  
 
     } catch (error) {
-        return res.status(500).send(error.message);
+        res.status(500).send(error.message)
+        return
     }
 }
 
