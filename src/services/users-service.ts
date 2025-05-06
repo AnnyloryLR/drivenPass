@@ -24,8 +24,8 @@ export async function logIn(signInData: SignInData){
 
     if(!logIn) throw unauthorized;
 
-    const token = jwt.sign({
-        userId: registeredUser.id},
+    const token = jwt.sign(
+        {userId: registeredUser.id},
         process.env.JWT_SECRET,
         {expiresIn:86400});
 

@@ -8,18 +8,24 @@ const secretKey = process.env.UUID;
 
 const cryptr = new Cryptr(secretKey);
 
-type CredentialData = Omit<Credential,"id" | "userId">;
+export type CredentialData = Omit<Credential,"id" | "userId">;
 
-export async function newCrendential(email: string,credentialData: CredentialData){
+export async function getCredentialTitle(title: string){
+    const exist = await prisma.credential.findFirst({
+        where:{
+            title:title
+        }
+    });
+
+    return exist;
+}
+
+export async function newCrendential(credentialData: CredentialData){
     const { title, url, username, password } = credentialData;
 
-    const user = await prisma.user.findFirst({
-        where: {
-            email: email
-        }
-    }); 
+    const user = getUserBy
     
-    const encryptedPassword = cryptr.encrypt(user.password);
+    const encryptedPassword = cryptr.encrypt(password);
 
     const credential = await prisma.credential.create({
         data:{
@@ -31,6 +37,7 @@ export async function newCrendential(email: string,credentialData: CredentialDat
         }
     });
 
+    return {user, credential};
 }
 
 export async function getAllCredentials(){
