@@ -1,6 +1,6 @@
 import { conflictError, notFound } from "errors/errors";
 import { getCredentialByTitle, getCredentialById, newCrendential, getAllCredentials, credentialUpdte,
-    deleteCredential, CredentialData} from "repositories/credentials-repository";
+    deleteCredential, CredentialData } from "repositories/credentials-repository";
 
 
 export async function createCredential(user_id: number, credentialData: CredentialData){
@@ -16,34 +16,35 @@ export async function createCredential(user_id: number, credentialData: Credenti
 }
 
 export async function readAllCredentials(){
-       const credentials  = await getAllCredentials();
+    const credentials  = await getAllCredentials();
 
     if (!credentials) throw notFound;
 
     return credentials;
 }
 
-export async function readCredentialById(id:number){
+export async function readCredentialById(id:string){
     
     const credential = await getCredentialById(id);
 
     if(!credential) throw notFound;
 
     return credential;
-
 }
 
-export async function updateCredential( id: number, credentialData: CredentialData){
-    const credential = await getCredentialById(id);
+export async function updateCredential(updateData: CredentialData){
+    const { title } = updateData;
+    
+    const credential = await getCredentialByTitle(title)
 
     if(!credential) throw notFound;
 
-    const result = await credentialUpdte(id, credentialData);
+    const result = await credentialUpdte(updateData);
 
     return result;
 }
 
-export async function credentialDeletion(id: number){
+export async function credentialDeletion(id: string){
     const credential = await getCredentialById(id);
 
     if(!credential) throw notFound;
