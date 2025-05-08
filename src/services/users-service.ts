@@ -10,7 +10,7 @@ export async function createUser(userData: UserData){
 
     const exist = await getUserData(email);
 
-    if(!exist) throw conflictError(email);
+    if(exist) throw conflictError(email);
 
     const result = await signUp(userData);
 

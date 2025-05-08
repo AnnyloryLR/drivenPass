@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import prisma from "database/config";
+import prisma from "../database/config";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 

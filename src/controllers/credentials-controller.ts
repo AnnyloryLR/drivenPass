@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCredential, readAllCredentials, readCredentialById, updateCredential, credentialDeletion } from "services/credentials-service";
+import { createCredential, readAllCredentials, readCredentialById, updateCredential, credentialDeletion } from "../services/credentials-service";
 import httpStatus from "http-status";
 import { CredentialData } from "../repositories/credentials-repository";
 

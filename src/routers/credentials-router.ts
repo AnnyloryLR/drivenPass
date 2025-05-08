@@ -1,4 +1,4 @@
-import { credentialUpdate, deleteCredential, getAllCredentials, getCredentialById, newCredential } from 'controllers/credentials-controller';
+import { credentialUpdate, deleteCredential, getAllCredentials, getCredentialById, newCredential } from '../controllers/credentials-controller';
 import { Router } from 'express';
 import { tokenValidate } from '../middlewares/auth-middleware';
 import { schemaValidate } from '../middlewares/schema-middleware';
