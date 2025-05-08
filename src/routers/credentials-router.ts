@@ -1,8 +1,8 @@
 import { credentialUpdate, deleteCredential, getAllCredentials, getCredentialById, newCredential } from 'controllers/credentials-controller';
 import { Router } from 'express';
-import { tokenValidate } from 'middlewares/auth-middleware';
-import { schemaValidate } from 'middlewares/schema-middleware';
-import { credentialSchema } from 'schemas/credentials-schema';
+import { tokenValidate } from '../middlewares/auth-middleware';
+import { schemaValidate } from '../middlewares/schema-middleware';
+import { credentialSchema } from '../schemas/credentials-schema';
 
 const credentialsRouter = Router();
 

@@ -1,4 +1,4 @@
-import { eraseAccount } from 'controllers/erase-controller';
+import { eraseAccount } from '../controllers/erase-controller';
 import { Router } from 'express';
 
 const eraseRouter = Router();
