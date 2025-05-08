@@ -1,4 +1,4 @@
-import prisma from "database/config";
+import prisma from "../database/config";
 import { Credential } from "../../generated/prisma";
 import Cryptr from "cryptr";
 import dotenv from "dotenv";

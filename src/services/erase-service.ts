@@ -1,4 +1,4 @@
-import { eraseAccount } from "repositories/erase-repository";
+import { eraseAccount } from "../repositories/erase-repository";
 
 export async function eraseProfile(id:string){
     

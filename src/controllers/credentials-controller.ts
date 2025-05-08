@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { createCredential, readAllCredentials, readCredentialById, updateCredential, credentialDeletion } from "services/credentials-service";
 import httpStatus from "http-status";
-import { CredentialData } from "repositories/credentials-repository";
+import { CredentialData } from "../repositories/credentials-repository";
 
 export async function newCredential(req: Request, res: Response){
     const { user_id, credentialData} = req.body;

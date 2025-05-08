@@ -1,4 +1,4 @@
-import prisma from 'database/config';
+import prisma from '../database/config';
 import { User } from '../../generated/prisma';
 import bcrypt from 'bcrypt';
 

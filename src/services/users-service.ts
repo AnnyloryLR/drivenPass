@@ -1,5 +1,5 @@
-import { conflictError, notFound, unauthorized } from "errors/errors";
-import { getUserData, signUp, signIn, UserData, SignInData } from "repositories/users-repository";
+import { conflictError, notFound, unauthorized } from "../errors/errors";
+import { getUserData, signUp, signIn, UserData, SignInData } from "../repositories/users-repository";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 

@@ -1,6 +1,6 @@
-import { conflictError, notFound } from "errors/errors";
+import { conflictError, notFound } from "../errors/errors";
 import { getCredentialByTitle, getCredentialById, newCrendential, getAllCredentials, credentialUpdte,
-    deleteCredential, CredentialData } from "repositories/credentials-repository";
+    deleteCredential, CredentialData } from "../repositories/credentials-repository";
 
 
 export async function createCredential(user_id: number, credentialData: CredentialData){

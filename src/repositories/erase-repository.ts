@@ -1,4 +1,4 @@
-import prisma from "database/config";
+import prisma from "../database/config";
 
 export async function eraseAccount(id:string){
     const user_id = Number(id)

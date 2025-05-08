@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { eraseProfile } from "services/erase-service";
+import { eraseProfile } from "../services/erase-service";
 import httpStatus from "http-status";
 
 export async function eraseAccount( req: Request, res: Response){
