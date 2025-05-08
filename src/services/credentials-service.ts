@@ -3,14 +3,14 @@ import { getCredentialByTitle, getCredentialById, newCrendential, getAllCredenti
     deleteCredential, CredentialData } from "../repositories/credentials-repository";
 
 
-export async function createCredential(user_id: number, credentialData: CredentialData){
-    const { title } = credentialData;
+export async function createCredential(credentialData: CredentialData){
+    const { title, url, username, password } = credentialData;
 
     const titleExistent = await getCredentialByTitle(title);
 
-    if(titleExistent) throw conflictError;
+    if(titleExistent) throw conflictError(title);
 
-    const result = await newCrendential(user_id, credentialData);
+    const result = await newCrendential(credentialData);
 
     return result;
 }
@@ -27,7 +27,7 @@ export async function readCredentialById(id:string){
     
     const credential = await getCredentialById(id);
 
-    if(!credential) throw notFound;
+    if(!credential) throw notFound(credential.title);
 
     return credential;
 }
@@ -37,7 +37,7 @@ export async function updateCredential(updateData: CredentialData){
     
     const credential = await getCredentialByTitle(title)
 
-    if(!credential) throw notFound;
+    if(!credential) throw notFound(title);
 
     const result = await credentialUpdte(updateData);
 

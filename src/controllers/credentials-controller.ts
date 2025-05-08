@@ -4,9 +4,19 @@ import httpStatus from "http-status";
 import { CredentialData } from "../repositories/credentials-repository";
 
 export async function newCredential(req: Request, res: Response){
-    const { user_id, credentialData} = req.body;
+    const { title, url, username, password } = req.body as CredentialData;
 
-    await createCredential(user_id, credentialData);
+    const userId = res.locals.user.id
+
+    const credentialData = {
+        title,
+        url,
+        username,
+        password, 
+        userId
+    }
+
+    await createCredential(credentialData);
 
     res.sendStatus(httpStatus.CREATED);
 }
@@ -26,9 +36,19 @@ export async function getCredentialById(req: Request, res: Response){
 }
 
 export async function credentialUpdate(req: Request, res: Response){
-    const updateData = req.body as CredentialData;
+    const { title, url, username, password } = req.body as CredentialData;
 
-    const result = await updateCredential(updateData);
+    const userId = res.locals.user.id
+
+    const credentialData = {
+        title,
+        url,
+        username,
+        password, 
+        userId
+    }
+
+    const result = await updateCredential(credentialData);
 
     res.status(204).send(result);  
 }
