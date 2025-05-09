@@ -134,7 +134,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/annylory/Desktop/driven_projetos/drivenPass/src/generated/prisma",
+      "value": "/home/annylory/Desktop/driven_projetos/drivenPass/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -152,10 +152,10 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
-  "relativePath": "../../../prisma",
+  "relativePath": "../..",
   "clientVersion": "6.7.0",
   "engineVersion": "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed",
   "datasourceNames": [
@@ -171,8 +171,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id          Int          @id @default(autoincrement())\n  name        String\n  email       String       @unique\n  password    String\n  credentials Credential[]\n\n  @@map(\"users\")\n}\n\nmodel Credential {\n  id       Int    @id @default(autoincrement())\n  title    String\n  url      String\n  username String\n  password String\n  userId   Int\n  user     User   @relation(fields: [userId], references: [id])\n\n  @@map(\"credentials\")\n}\n",
-  "inlineSchemaHash": "0500f770045c08755688ed20634500a9f71e06c27275d7d84f0b0d1e9a93cc13",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id          Int          @id @default(autoincrement())\n  name        String\n  email       String       @unique\n  password    String\n  credentials Credential[]\n\n  @@map(\"users\")\n}\n\nmodel Credential {\n  id       Int    @id @default(autoincrement())\n  title    String\n  url      String\n  username String\n  password String\n  userId   Int\n  user     User   @relation(fields: [userId], references: [id])\n\n  @@map(\"credentials\")\n}\n",
+  "inlineSchemaHash": "a05ec7b13755fc509ae175a49e4ebd33f8bdfac3358f28acc806d22f75f1af6e",
   "copyEngine": true
 }
 config.dirname = '/'

@@ -20,7 +20,7 @@ export async function createUser(userData: UserData){
 export async function logIn(signInData: SignInData){
     const { registeredUser } = await signIn(signInData);
 
-    if(!registeredUser) throw notFound(registeredUser.name);
+    if(!registeredUser) throw notFound;
 
     if(!logIn) throw unauthorized;
 

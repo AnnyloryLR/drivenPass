@@ -5,10 +5,10 @@ export function conflictError(entity: string){
     }
 }
 
-export function notFound(entity: string){
+export function notFound(){
     return{
         type:"notFound",
-        message:`${entity} não existe!`
+        message:`não encontrado!`
     }
 }
 

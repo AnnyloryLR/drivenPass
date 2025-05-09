@@ -25,7 +25,7 @@ export async function readCredentialById(id:string){
     
     const credential = await getCredentialById(id);
 
-    if(!credential) throw notFound(credential.title);
+    if(!credential) throw notFound;
 
     return credential;
 }
@@ -35,7 +35,7 @@ export async function updateCredential(updateData: CredentialData){
     
     const credential = await getCredentialByTitle(title)
 
-    if(!credential) throw notFound(title);
+    if(!credential) throw notFound;
 
     const result = await credentialUpdte(updateData);
 
