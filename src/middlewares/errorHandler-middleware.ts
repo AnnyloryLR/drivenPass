@@ -1,5 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { Error } from "protocols/types";
+
+export type Error = {
+    type: string,
+    message: string
+}
 
 export default function errorHandler(error: Error, req: Request, res: Response, next: NextFunction){
 

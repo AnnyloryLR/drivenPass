@@ -1,5 +1,5 @@
 import prisma from "../database/config";
-import { Credential } from "../../generated/prisma";
+import { Credential } from "../generated/prisma";
 import Cryptr from "cryptr";
 import dotenv from "dotenv";
 dotenv.config();
@@ -8,7 +8,13 @@ const secretKey = process.env.UUID;
 
 const cryptr = new Cryptr(secretKey);
 
-export type CredentialData = Omit<Credential,"id">;
+export type CredentialData = {
+    title: string;
+    url: string;
+    username: string;
+    password: string;
+    userId: number;
+}
 
 export async function getCredentialByTitle(title: string){
     const exist = await prisma.credential.findFirst({

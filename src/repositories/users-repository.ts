@@ -1,10 +1,17 @@
 import prisma from '../database/config';
-import { User } from '../../generated/prisma';
+import { User } from '../generated/prisma'
 import bcrypt from 'bcrypt';
 
-export type UserData = Omit<User,"id">;
+export type UserData = {
+    name:string,
+    email:string,
+    password:string
+}
 
-export type SignInData = Omit<User, "id" | "name">;
+export type SignInData = {
+    email:string,
+    password:string
+}
 
 export async function getUserData(email:string){
    
