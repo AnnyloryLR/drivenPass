@@ -18,8 +18,6 @@ export async function createCredential(credentialData: CredentialData){
 export async function readAllCredentials(){
     const credentials  = await getAllCredentials();
 
-    if (!credentials) throw notFound;
-
     return credentials;
 }
 
