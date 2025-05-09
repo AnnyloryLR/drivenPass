@@ -1,17 +1,16 @@
 import prisma from "../database/config";
 
-export async function eraseAccount(id:string){
-    const user_id = Number(id)
+export async function eraseAccount(userId:number){
 
-    await prisma.credential.delete({
+    await prisma.credential.deleteMany({
         where:{
-            id:user_id
+            userId: userId
         }
     });
 
     const result = await prisma.user.delete({
         where:{
-            id:user_id
+            id:userId
         }
     })
 

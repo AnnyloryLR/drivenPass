@@ -3,9 +3,9 @@ import { eraseProfile } from "../services/erase-service";
 import httpStatus from "http-status";
 
 export async function eraseAccount( req: Request, res: Response){
-    const { id } = req.params;
+    const userId = res.locals.user.id as number;
 
-    await eraseProfile(id);
+    await eraseProfile(userId);
 
     res.sendStatus(httpStatus.NO_CONTENT);
 }

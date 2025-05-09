@@ -4,11 +4,11 @@ import { getCredentialByTitle, getCredentialById, newCrendential, getAllCredenti
 
 
 export async function createCredential(credentialData: CredentialData){
-    const { title, url, username, password } = credentialData;
+    const { title, userId } = credentialData;
 
     const titleExistent = await getCredentialByTitle(title);
 
-    if(titleExistent) throw conflictError(title);
+    if(titleExistent && titleExistent.userId == userId) throw conflictError(title);
 
     const result = await newCrendential(credentialData);
 

@@ -1,8 +1,8 @@
 import { eraseAccount } from "../repositories/erase-repository";
 
-export async function eraseProfile(id:string){
+export async function eraseProfile(userId:number){
     
-    const result = await eraseAccount(id);
+    const result = await eraseAccount(userId);
 
     return result;
 }
