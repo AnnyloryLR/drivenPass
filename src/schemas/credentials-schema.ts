@@ -1,5 +1,5 @@
 import joi from 'joi';
-import { Credential } from '../../prisma/generated/prisma';
+import { Credential } from 'repositories/credentials-repository';
 
 export const credentialSchema = joi.object<Credential>({
     title: joi.string().required(),

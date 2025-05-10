@@ -1,5 +1,5 @@
 import prisma from "../database/config";
-import { Credential } from "../../prisma/generated/prisma";
+import { credentials } from "@prisma/client";
 import Cryptr from "cryptr";
 import dotenv from "dotenv";
 dotenv.config();
@@ -7,6 +7,8 @@ dotenv.config();
 const secretKey = process.env.UUID;
 
 const cryptr = new Cryptr(secretKey);
+
+export type Credential = credentials;
 
 export type CredentialData = {
     title: string;
@@ -17,7 +19,7 @@ export type CredentialData = {
 }
 
 export async function getCredentialByTitle(title: string){
-    const exist = await prisma.credential.findFirst({
+    const exist = await prisma.credentials.findFirst({
         where:{
             title:title
         }
@@ -31,7 +33,7 @@ export async function newCrendential(credentialData: CredentialData){
 
     const encryptedPassword = cryptr.encrypt(password);
 
-    const credential = await prisma.credential.create({
+    const credential = await prisma.credentials.create({
         data:{
             title,
             url,
@@ -47,7 +49,7 @@ export async function newCrendential(credentialData: CredentialData){
 export async function getAllCredentials(){
     const decryptedCredentials: Credential[] = [];
     
-    const credentials = await prisma.credential.findMany();
+    const credentials = await prisma.credentials.findMany();
     for (const credential of credentials){
         decryptedCredentials.push({
             id: credential.id,
@@ -65,7 +67,7 @@ export async function getAllCredentials(){
 export async function getCredentialById(id:string){
     const credential_id = Number(id);
 
-    const credential = await prisma.credential.findFirst({
+    const credential = await prisma.credentials.findFirst({
         where: {
             id:credential_id
         }
@@ -90,7 +92,7 @@ export async function credentialUpdte(updateData:CredentialData){
 
     const credential = await getCredentialByTitle(title);
 
-    const updatedCredential: Credential = await prisma.credential.update({
+    const updatedCredential: Credential = await prisma.credentials.update({
         where:{
             id:credential.id
         },
@@ -110,7 +112,7 @@ export async function credentialUpdte(updateData:CredentialData){
 
 export async function deleteCredential(id:string){
     const credential_id = Number(id)
-    const deleted = await prisma.credential.delete({
+    const deleted = await prisma.credentials.delete({
         where:{
             id:credential_id
         }

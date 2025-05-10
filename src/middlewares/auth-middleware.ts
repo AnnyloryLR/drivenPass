@@ -19,7 +19,7 @@ export async function tokenValidate(req: Request, res: Response, next: NextFunct
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET) as UserPayload
             
-            const user = await prisma.user.findFirst({
+            const user = await prisma.users.findFirst({
                 where: {
                        id: decoded.userId
                    }

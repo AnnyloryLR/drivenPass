@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/prisma"
 }
 
 datasource db {
@@ -8,24 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id          Int          @id @default(autoincrement())
-  name        String
-  email       String       @unique
-  password    String
-  credentials Credential[]
-
-  @@map("users")
-}
-
-model Credential {
+model credentials {
   id       Int    @id @default(autoincrement())
   title    String
   url      String
   username String
   password String
   userId   Int
-  user     User   @relation(fields: [userId], references: [id])
+  users    users  @relation(fields: [userId], references: [id])
+}
 
-  @@map("credentials")
+model users {
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+  password    String
+  credentials credentials[]
 }

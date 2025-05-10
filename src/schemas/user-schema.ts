@@ -1,5 +1,5 @@
 import joi from 'joi';
-import { User } from '../../prisma/generated/prisma';
+import { User } from 'repositories/users-repository';
 
 type LogIn = {
     email:string;

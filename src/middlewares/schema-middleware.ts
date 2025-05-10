@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import { ObjectSchema } from "joi";
-import { User, Credential } from "../../prisma/generated/prisma";
+import { User } from "repositories/users-repository";
+import { Credential } from "repositories/credentials-repository";
 
 export function schemaValidate( schema: ObjectSchema ){
     return (req: Request, res: Response, next: NextFunction) => {
