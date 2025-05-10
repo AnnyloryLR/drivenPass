@@ -7,20 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model credentials {
+model Credential {
   id       Int    @id @default(autoincrement())
   title    String
   url      String
   username String
   password String
   userId   Int
-  users    users  @relation(fields: [userId], references: [id])
+  user     User  @relation(fields: [userId], references: [id])
+
+  @@map("credentials")
 }
 
-model users {
+model User {
   id          Int           @id @default(autoincrement())
   name        String
   email       String        @unique
   password    String
-  credentials credentials[]
+  credentials Credential[]
+
+  @@map("users")
 }

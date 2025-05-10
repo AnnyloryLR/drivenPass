@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "index.js",
   "prisma": {
-    "seed": "ts-node-dev prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
     "build": "tsc",

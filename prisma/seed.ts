@@ -9,8 +9,8 @@ const cryptr = new Cryptr(secretKey);
 const encryptedPassword = cryptr.encrypt("demo123");
 
 async function main(){
-    await prisma.users.upsert({
-        where: {email: "demo@driven.com.br"},
+    await prisma.user.upsert({
+        where: { email: "demo@driven.com.br" },
         update: {},
         create:{
             name: "Demo",
